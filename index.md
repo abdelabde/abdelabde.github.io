@@ -5,7 +5,7 @@ landing-title: 'Abdelhakim Abdellaoui'
 description: 
 image: 
 author: 
-show_tile: False
+show_tile: True
 ---
     
 <!--img src="https://raw.githubusercontent.com/AbdelMostafa/AbdelMostafa.github.io/master/assets/images/abdel_photo_2.jpg" width="220"-->
