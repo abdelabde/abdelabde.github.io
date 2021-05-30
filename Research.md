@@ -16,20 +16,20 @@ nav-menu: true
 <!-- Content -->
 <div class="column">
 	<div class="20u 10u$(small)">
-		<h3>Recurrent neural networks</h3>
+		<h3>Reinforcement learning</h3>
 	</div>
 	<div class="20u$ 10u$(small)">
-		<h3>Natural language processing</h3>
+		<h3>Deep learning</h3>
 	</div>
 	<!-- Break -->
 	<div class="20u 10u$(medium)">
-		<h3>Reinforcement learning</h3>
+		<h3> Combinatorial optimization </h3>
 	</div>
 	<div class="20u 10u$(medium)">
-		<h3>Lifelong learning</h3>
+		<h3> Integer programming </h3>
 	</div>
 	<div class="20u$ 10u$(medium)">
-		<h3>Medical imaging</h3>
+		<h3>Optimization for machine learning</h3>
 	</div>
 	<div class="20u$ 10u$(small)">
 		<h3>Neuroscience</h3>
