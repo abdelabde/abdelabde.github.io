@@ -1,8 +1,8 @@
 # site settings
-title: Abdelrahman
+title: Abdelhakim Abdellaoui
 subtitle: Zayed
-email: abdel.zayed.1@gmail.com
-description: 'PhD student in Computer science'
+email: abdelhakim.abdellaoui@polymtl.ca
+description: 'PhD student in Applied Mathematics'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
@@ -22,7 +22,7 @@ github_url: https://github.com/AbdelrahmanZayed
 # gitlab_url:
 # googleplus_url:
 instagram_url:
-linkedin_url: https://www.linkedin.com/in/abdelrahman-zayed-669382103/
+linkedin_url: https://www.linkedin.com/in/abdelhakim-abdellaoui-261478116/
 pinterest_url:
 slack_url:
 twitter_url: 
