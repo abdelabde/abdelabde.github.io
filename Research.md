@@ -31,15 +31,12 @@ nav-menu: true
 	<div class="20u$ 10u$(medium)">
 		<h3>Optimization for machine learning</h3>
 	</div>
-	<div class="20u$ 10u$(small)">
-		<h3>Neuroscience</h3>
-	</div>
 </div>
 		<header class="major">
 			<h1>Publications</h1>
 		</header>
 	<dl>
-		<dt>Ultrasound Elastography using Machine Learning.</dt>
+		<dt> Predicting future ships arrival, wharf availability periods and the sojourn time : A Case study of wharf Laayoune.</dt>
 		<dd><b>A. Zayed</b></dd>
 		<dd><i>Master's Thesis, 2020.</i></dd>
 		<dd><a href="https://spectrum.library.concordia.ca/986744/1/Zayed_MASc_S2020.pdf">[Link]</a></dd>
