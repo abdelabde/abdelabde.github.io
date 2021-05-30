@@ -44,7 +44,7 @@ nav-menu: true
 	<dl>
 		<dt>Digitalisation du processus de la planification de chargement des navires au niveau du port Wharf Laâyoune.</dt>
 		<dd><b>A. Abdellaoui, A. Attajer, L. Benabbou</b></dd>
-		<dd><i> Master's thesis, 2018.</i> <strong>Long oral.</strong></dd>
+		<dd><i> Master's thesis, 2018.</i></dd>
 		<dd><a href="https://www.researchgate.net/publication/349216689_Digitalisation_du_processus_de_la_planification_de_chargement_des_navires_au_niveau_du_port_Wharf_Laayoune">[Link]</a>
 	</dl>
 </div>
