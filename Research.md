@@ -47,28 +47,4 @@ nav-menu: true
 		<dd><i> Master's thesis, 2018.</i> <strong>Long oral.</strong></dd>
 		<dd><a href="https://www.researchgate.net/publication/349216689_Digitalisation_du_processus_de_la_planification_de_chargement_des_navires_au_niveau_du_port_Wharf_Laayoune">[Link]</a>
 	</dl>
-	<dl>
-		<dt>Automatic Frame Selection using CNN in Ultrasound Elastography.</dt>
-		<dd><b>A. Zayed</b>, G. Cloutier and H. Rivaz</dd>
-		<dd><i>Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBS), 2020.</i></dd>
-		<dd><a href="https://arxiv.org/pdf/2002.06734.pdf">[arXiv]</a></dd>
-	</dl>
-	<dl>
-		<dt>Rapid Quantification of White Matter Disconnection in the Human Brain.</dt>
-		<dd><b>A. Zayed</b>, Y. Iturria-Medina, A. Villringer, B. Sehm and C. Steele</dd>
-		<dd><i>Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBS), 2020.</i></dd>
-		<dd><a href="https://arxiv.org/pdf/2002.09035.pdf">[arXiv]</a></dd>
-	</dl>
-	<dl>
-		<dt>Automatic Frame Selection Using MLP Neural Network in Ultrasound Elastography.</dt>
-		<dd><b>A. Zayed</b> and H. Rivaz.</dd>
-		<dd>International Conference on Image Analysis and Recognition (ICIAR), 2019.</dd>
-		<dd><a href="https://arxiv.org/pdf/1911.05245.pdf">[arXiv]</a></dd>
-	</dl>
-	<dl>
-		<dt>Fast approximate time-delay estimation in ultrasound elastography using principal component analysis.</dt>
-		<dd><b>A. Zayed</b> and H. Rivaz.</dd>
-		<dd><i>Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBS), 2019.</i></dd>
-		<dd><a href="https://arxiv.org/pdf/1911.05242.pdf">[arXiv]</a></dd>
-	</dl>
 </div>
