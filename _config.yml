@@ -1,8 +1,8 @@
 # site settings
 title: Abdelhakim Abdellaoui
-subtitle: Abdellaoui
+subtitle:
 email: abdelhakim.abdellaoui@polymtl.ca
-description: 'PhD student in Applied Mathematics'
+description: 'PhD candidate in Applied Mathematics'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
