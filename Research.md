@@ -37,7 +37,7 @@ nav-menu: true
 		</header>
 	<dl>
 		<dt> Predicting future ships arrival, wharf availability periods and the sojourn time : A Case study of wharf Laayoune.</dt>
-		<dd><b>A. Abdellaoui</b></dd>
+		<dd><b>A. Abdellaoui, A. Attajer, L. Benabbou</b></dd>
 		<dd><i>Conference: Machine Learning and Data Analytics For Africa (ML4A), 2018.</i></dd>
 		<dd><a href="https://www.researchgate.net/publication/349214764_Predicting_future_ships_arrival_wharf_availability_periods_and_the_sojourn_time_A_Case_study_of_wharf_Laayoune">[Link]</a></dd>
 	</dl> 
