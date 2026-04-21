@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdelhakim Abdellaoui — PhD Candidate, Polytechnique Montréal</title>
+    <meta name="description" content="Abdelhakim Abdellaoui is a PhD candidate in Applied Mathematics at Polytechnique Montréal, working on reinforcement learning and combinatorial optimization.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --ink: #1a1a2e;
+            --ink-light: #4a4a5a;
+            --ink-muted: #7a7a8a;
+            --cream: #faf9f6;
+            --cream-warm: #f5f0e8;
+            --accent: #b45309;
+            --accent-light: #d97706;
+            --accent-bg: #fef3c7;
+            --border: #e5e2db;
+            --border-light: #f0ede6;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+            --radius: 10px;
+            --radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(250, 249, 246, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 2rem; height: 60px;
+        }
+        .nav-logo {
+            font-family: 'Newsreader', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--ink); text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 0.25rem; }
+        .nav-links a {
+            font-size: 0.875rem; font-weight: 500;
+            color: var(--ink-light); text-decoration: none;
+            padding: 0.4rem 0.75rem; border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent); background: var(--accent-bg);
+        }
+        .nav-toggle { display: none; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--ink); }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .hero-photo-wrap {
+            position: relative;
+        }
+        .hero-photo {
+            width: 240px; height: 280px;
+            object-fit: cover; object-position: top;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            filter: grayscale(10%);
+        }
+        .hero-badge {
+            position: absolute; bottom: -12px; right: -12px;
+            background: var(--accent); color: white;
+            font-size: 0.7rem; font-weight: 700;
+            padding: 0.35rem 0.7rem; border-radius: 20px;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            box-shadow: var(--shadow-md);
+        }
+        .hero-content h1 {
+            font-family: 'Newsreader', serif;
+            font-size: 2.75rem; font-weight: 500;
+            line-height: 1.15; letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+        .hero-content h1 span {
+            display: block;
+            font-size: 1.1rem; font-weight: 400;
+            font-family: 'Source Sans 3', sans-serif;
+            color: var(--ink-muted);
+            letter-spacing: 0; margin-top: 0.3rem;
+        }
+        .hero-bio {
+            margin-top: 1.25rem;
+            font-size: 1.05rem; color: var(--ink-light);
+            max-width: 620px;
+        }
+        .hero-bio a {
+            color: var(--accent); text-decoration: underline;
+            text-decoration-color: rgba(180, 83, 9, 0.3);
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.2s;
+        }
+        .hero-bio a:hover { text-decoration-color: var(--accent); }
+        .hero-links {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .hero-links a {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            font-size: 0.85rem; font-weight: 500;
+            color: var(--ink-light); text-decoration: none;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .hero-links a:hover {
+            border-color: var(--accent); color: var(--accent);
+            background: var(--accent-bg);
+        }
+        .hero-links a i { font-size: 0.9rem; }
+
+        /* ── SECTION COMMON ── */
+        section { padding: 4rem 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-title {
+            font-family: 'Newsreader', serif;
+            font-size: 1.75rem; font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px; height: 28px;
+            background: var(--accent);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .section-subtitle {
+            color: var(--ink-muted); font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-left: calc(4px + 0.6rem);
+        }
+
+        /* ── NEWS ── */
+        .news-section { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+        .news-list { display: flex; flex-direction: column; gap: 0; }
+        .news-item {
+            display: grid; grid-template-columns: 110px 1fr; gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+            align-items: baseline;
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem; color: var(--ink-muted);
+            white-space: nowrap;
+        }
+        .news-text { font-size: 0.95rem; color: var(--ink-light); }
+        .news-text strong { color: var(--ink); font-weight: 600; }
+        .news-text a { color: var(--accent); text-decoration: none; }
+        .news-text a:hover { text-decoration: underline; }
+
+        /* ── RESEARCH ── */
+        .research-interests {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .research-tag {
+            font-size: 0.85rem; font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            color: var(--ink-light);
+        }
+
+        .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pub-item {
+            padding: 1.25rem 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            transition: all 0.2s;
+        }
+        .pub-item:hover { border-color: var(--border); box-shadow: var(--shadow-sm); }
+        .pub-type {
+            display: inline-block;
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            padding: 0.2rem 0.55rem; border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .pub-type.preprint { background: #e0f2fe; color: #0369a1; }
+        .pub-type.conference { background: #fce7f3; color: #be185d; }
+        .pub-type.thesis { background: #f3e8ff; color: #7c3aed; }
+        .pub-title {
+            font-family: 'Newsreader', serif;
+            font-size: 1.05rem; font-weight: 500;
+            line-height: 1.4; margin-bottom: 0.35rem;
+        }
+        .pub-authors { font-size: 0.875rem; color: var(--ink-muted); margin-bottom: 0.2rem; }
+        .pub-authors strong { color: var(--ink); font-weight: 600; }
+        .pub-venue { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; }
+        .pub-links { margin-top: 0.6rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .pub-links a {
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--accent); text-decoration: none;
+            padding: 0.2rem 0.55rem; border-radius: 4px;
+            border: 1px solid rgba(180,83,9,0.25);
+            transition: all 0.2s;
+        }
+        .pub-links a:hover { background: var(--accent-bg); }
+
+        /* ── EXPERIENCE ── */
+        .experience-section { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {
+            content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
+            width: 2px; background: var(--border);
+        }
+        .timeline-item { position: relative; margin-bottom: 2rem; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot {
+            position: absolute; left: -2rem; top: 6px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--cream); border: 2px solid var(--accent);
+        }
+        .timeline-item.current .timeline-dot { background: var(--accent); }
+        .timeline-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem; color: var(--ink-muted);
+            margin-bottom: 0.15rem;
+        }
+        .timeline-role {
+            font-weight: 600; font-size: 1rem;
+            margin-bottom: 0.1rem;
+        }
+        .timeline-org {
+            font-size: 0.9rem; color: var(--ink-muted);
+            margin-bottom: 0.35rem;
+        }
+        .timeline-org a { color: var(--accent); text-decoration: none; }
+        .timeline-org a:hover { text-decoration: underline; }
+        .timeline-desc {
+            font-size: 0.9rem; color: var(--ink-light);
+            max-width: 600px;
+        }
+
+        /* ── AWARDS ── */
+        .awards-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .award-card {
+            padding: 1.25rem 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            transition: all 0.2s;
+        }
+        .award-card:hover { box-shadow: var(--shadow-sm); border-color: var(--border); }
+        .award-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; color: var(--accent);
+            font-weight: 600; margin-bottom: 0.3rem;
+        }
+        .award-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+        .award-org { font-size: 0.85rem; color: var(--ink-muted); }
+
+        /* ── TEACHING ── */
+        .teaching-section { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+
+        /* ── INITIATIVES ── */
+        .initiative-card {
+            display: grid; grid-template-columns: 80px 1fr; gap: 1.25rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            margin-bottom: 1.25rem;
+            align-items: start;
+        }
+        .initiative-icon {
+            width: 80px; height: 80px;
+            background: var(--accent-bg);
+            border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+        }
+        .initiative-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem; }
+        .initiative-desc { font-size: 0.9rem; color: var(--ink-light); }
+        .initiative-desc a { color: var(--accent); text-decoration: none; }
+        .initiative-desc a:hover { text-decoration: underline; }
+
+        /* ── GALLERY ── */
+        .gallery-section { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 2rem 0.75rem 0.6rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.65));
+            color: white; font-size: 0.75rem; font-weight: 500;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-caption { opacity: 1; }
+        .gallery-item.span-2 { grid-column: span 2; }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--ink-muted);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+        .footer-social a {
+            width: 38px; height: 38px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid var(--border);
+            color: var(--ink-muted); font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .footer-social a:hover {
+            border-color: var(--accent); color: var(--accent);
+            background: var(--accent-bg);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; justify-items: center; text-align: center; }
+            .hero-photo { width: 180px; height: 210px; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-bio { max-width: 100%; }
+            .hero-links { justify-content: center; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 60px; left: 0; right: 0;
+                background: var(--cream); border-bottom: 1px solid var(--border);
+                padding: 1rem; gap: 0.25rem;
+            }
+            .nav-toggle { display: block; }
+            .news-item { grid-template-columns: 1fr; gap: 0.25rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.span-2 { grid-column: span 2; }
+            .initiative-card { grid-template-columns: 1fr; }
+            .initiative-icon { width: 50px; height: 50px; font-size: 1.5rem; }
+            .awards-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.5rem; }
+            .hero-badge { bottom: -10px; right: auto; left: 50%; transform: translateX(-50%); }
+        }
+
+        /* ── ANIMATIONS ── */
+        .fade-in {
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">A<span>.</span> Abdellaoui</a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="#about" class="active">About</a>
+            <a href="#news">News</a>
+            <a href="#research">Research</a>
+            <a href="#experience">Experience</a>
+            <a href="#awards">Awards</a>
+            <a href="#initiatives">Initiatives</a>
+            <a href="#gallery">Gallery</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO / ABOUT -->
+<section class="hero" id="about">
+    <div class="hero-grid fade-in">
+        <div class="hero-photo-wrap">
+            <img src="images/1675101784485.jpg" alt="Abdelhakim Abdellaoui" class="hero-photo">
+            <div class="hero-badge">PhD Candidate</div>
+        </div>
+        <div class="hero-content">
+            <h1>
+                Abdelhakim Abdellaoui
+                <span>PhD Candidate in Applied Mathematics · Polytechnique Montréal</span>
+            </h1>
+            <p class="hero-bio">
+                I am a PhD candidate in the Department of Mathematics and Industrial Engineering at
+                <a href="https://www.polymtl.ca/" target="_blank">Polytechnique Montréal</a> and a member of
+                <a href="https://www.gerad.ca/en" target="_blank">GERAD</a>, supervised by
+                <a href="https://www.gerad.ca/fr/people/issmail-el-hallaoui" target="_blank">Prof. Issmail El Hallaoui</a> and
+                <a href="https://www.uqar.ca/universite/a-propos-de-l-uqar/departements/unites-departementales-des-sciences-de-la-gestion/benabbou-lobna" target="_blank">Prof. Loubna Benabbou</a>.
+            </p>
+            <p class="hero-bio" style="margin-top:0.75rem;">
+                My research focuses on the theoretical foundations of <strong>reinforcement learning</strong> and <strong>optimization</strong>, with the goal of designing AI algorithms for <strong>combinatorial optimization</strong> problems. I am also a co-founder of the <a href="#initiatives">OR@Africa</a> initiative and an ERP Functional Consultant at <a href="#experience">Arche TI</a>.
+            </p>
+            <p class="hero-bio" style="margin-top:0.75rem;">
+                Prior to Polytechnique, I earned an Industrial Engineering diploma from <a href="https://www.emi.ac.ma/" target="_blank">Mohammadia School of Engineering (EMI)</a> in Rabat, Morocco.
+            </p>
+            <div class="hero-links">
+                <a href="mailto:abdelhakim.abdellaoui@polymtl.ca"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://scholar.google.com/citations?user=wvmZBsYAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i> Scholar</a>
+                <a href="https://www.researchgate.net/profile/Abdelhakim-Abdellaoui" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+                <a href="https://www.linkedin.com/in/abdelhakim-abdellaoui-261478116/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/abdelabde" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.gerad.ca/en/people/abdelhakim-abdellaoui" target="_blank"><i class="fas fa-building-columns"></i> GERAD</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+    <div class="container fade-in">
+        <div class="section-title">News</div>
+        <div class="section-subtitle">Recent updates and milestones</div>
+        <div class="news-list">
+            <div class="news-item">
+                <div class="news-date">Jul 2025</div>
+                <div class="news-text">Presented at <strong>EURO 2025</strong> in Leeds (UK) and co-organized the <strong>OR@Africa Dinner</strong> at the conference.</div>
+            </div>
+            <div class="news-item">
+                <div class="news-date">Jun 2025</div>
+                <div class="news-text"><strong>Winner</strong> of the <strong>David Martell Student Paper Competition in Forestry</strong> at the 2025 CORS Conference. <a href="https://www.gerad.ca/en/posts/1260">[GERAD Announcement]</a></div>
+            </div>
+            <div class="news-item">
+                <div class="news-date">Jan 2025</div>
+                <div class="news-text">Co-organized the first <strong>OR@Africa Day</strong> at GERAD — featured on <a href="#">INFORMS</a> and <a href="#">IFORS</a> newsletters.</div>
+            </div>
+            <div class="news-item">
+                <div class="news-date">Mar 2024</div>
+                <div class="news-text">New preprint: <strong>"Towards a connection between the CVRP and constrained centroid-based clustering"</strong> — <a href="https://arxiv.org/abs/2403.14013">arXiv</a></div>
+            </div>
+            <div class="news-item">
+                <div class="news-date">Sep 2023</div>
+                <div class="news-text">Co-founded <strong>OR@Africa</strong> at GERAD with fellow researchers, supported by Prof. Issmail El Hallaoui.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+    <div class="container fade-in">
+        <div class="section-title">Research</div>
+        <div class="section-subtitle">Publications, preprints, and research interests</div>
+
+        <div class="research-interests">
+            <span class="research-tag">Reinforcement Learning</span>
+            <span class="research-tag">Deep Learning</span>
+            <span class="research-tag">Combinatorial Optimization</span>
+            <span class="research-tag">Integer Programming</span>
+            <span class="research-tag">Vehicle Routing</span>
+            <span class="research-tag">Optimization for ML</span>
+        </div>
+
+        <div class="pub-list">
+            <div class="pub-item">
+                <span class="pub-type preprint">Preprint</span>
+                <div class="pub-title">Towards a Connection Between the Capacitated Vehicle Routing Problem and the Constrained Centroid-Based Clustering</div>
+                <div class="pub-authors"><strong>A. Abdellaoui</strong>, L. Benabbou, I. El Hallaoui</div>
+                <div class="pub-venue">GERAD Technical Report G-2024-24, 2024</div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2403.14013" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
+                    <a href="https://www.gerad.ca/en/people/abdelhakim-abdellaoui" target="_blank"><i class="fas fa-link"></i> GERAD</a>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <span class="pub-type conference">Conference</span>
+                <div class="pub-title">Predicting Future Ships Arrival, Wharf Availability Periods and the Sojourn Time: A Case Study of Wharf Laayoune</div>
+                <div class="pub-authors"><strong>A. Abdellaoui</strong>, A. Attajer, L. Benabbou</div>
+                <div class="pub-venue">Machine Learning and Data Analytics for Africa (ML4A), 2018</div>
+                <div class="pub-links">
+                    <a href="https://www.researchgate.net/publication/349214764" target="_blank"><i class="fas fa-link"></i> ResearchGate</a>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <span class="pub-type thesis">Thesis</span>
+                <div class="pub-title">Digitalisation du processus de la planification de chargement des navires au niveau du port Wharf Laâyoune</div>
+                <div class="pub-authors"><strong>A. Abdellaoui</strong>, A. Attajer, L. Benabbou</div>
+                <div class="pub-venue">Master's Thesis, Mohammadia School of Engineering (EMI), 2018</div>
+                <div class="pub-links">
+                    <a href="https://www.researchgate.net/publication/349216689" target="_blank"><i class="fas fa-link"></i> ResearchGate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+    <div class="container fade-in">
+        <div class="section-title">Experience</div>
+        <div class="section-subtitle">Academic and industry positions</div>
+
+        <div class="timeline">
+            <div class="timeline-item current">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2020 — Present</div>
+                <div class="timeline-role">PhD Candidate in Applied Mathematics</div>
+                <div class="timeline-org"><a href="https://www.polymtl.ca/">Polytechnique Montréal</a> & <a href="https://www.gerad.ca/en">GERAD</a>, Montréal, Canada</div>
+                <div class="timeline-desc">Research on reinforcement learning foundations and AI algorithms for combinatorial optimization. Supervised by Prof. Issmail El Hallaoui and Prof. Loubna Benabbou.</div>
+            </div>
+
+            <div class="timeline-item current">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">Present</div>
+                <div class="timeline-role">ERP Functional Consultant</div>
+                <div class="timeline-org"><a href="#">Arche TI</a>, Montréal, Canada</div>
+                <div class="timeline-desc">Providing ERP technical and functional support for SMEs across various industries — implementing Odoo modules, resolving bugs, server issues, and answering functional questions.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">Previous</div>
+                <div class="timeline-role">Research Intern — ML for Supply Chain</div>
+                <div class="timeline-org"><a href="#">OCP Group / CanmetÉNERGIE</a></div>
+                <div class="timeline-desc">Designed and deployed ML-based sales forecasting models for fuel station management. Built an order-based inventory management tool integrating forecasting outputs with business constraints.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2018</div>
+                <div class="timeline-role">Industrial Engineering Diploma</div>
+                <div class="timeline-org"><a href="https://www.emi.ac.ma/">Mohammadia School of Engineering (EMI)</a>, Rabat, Morocco</div>
+                <div class="timeline-desc">End-of-studies project on digitalization of ship loading planning at the port of Wharf Laayoune (OCP Group).</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+    <div class="container fade-in">
+        <div class="section-title">Awards & Honors</div>
+        <div class="section-subtitle">Selected recognitions</div>
+
+        <div class="awards-grid">
+            <div class="award-card">
+                <div class="award-year">2025</div>
+                <div class="award-name">David Martell Student Paper Competition in Forestry — Winner</div>
+                <div class="award-org">CORS Conference 2025</div>
+            </div>
+            <div class="award-card">
+                <div class="award-year">2025</div>
+                <div class="award-name">EURO 2025 Conference — Presentation & OR@Africa Dinner</div>
+                <div class="award-org">EURO, Leeds, UK</div>
+            </div>
+            <div class="award-card">
+                <div class="award-year">2024</div>
+                <div class="award-name">OR@Africa Day — Co-organizer</div>
+                <div class="award-org">GERAD, Montréal</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEACHING -->
+<section class="teaching-section" id="teaching">
+    <div class="container fade-in">
+        <div class="section-title">Teaching</div>
+        <div class="section-subtitle">Teaching assistant experience</div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2014</div>
+                <div class="timeline-role">Teaching Assistant — Mathematics & Physics</div>
+                <div class="timeline-org">Preparatory Classes, Morocco</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INITIATIVES -->
+<section id="initiatives">
+    <div class="container fade-in">
+        <div class="section-title">Initiatives & Community</div>
+        <div class="section-subtitle">Projects beyond research</div>
+
+        <div class="initiative-card">
+            <div class="initiative-icon">🌍</div>
+            <div>
+                <div class="initiative-title">OR@Africa — Co-Founder</div>
+                <div class="initiative-desc">
+                    Founded in September 2023 at GERAD, OR@Africa is a visionary initiative dedicated to advancing Operational Research in Africa. It brings together African OR researchers worldwide to tackle real-world problems using OR. Featured on <a href="#">INFORMS</a> and <a href="#">IFORS</a> newsletters. Co-founded with fellow GERAD students and supported by Prof. Issmail El Hallaoui.
+                </div>
+            </div>
+        </div>
+
+        <div class="initiative-card">
+            <div class="initiative-icon">🎙️</div>
+            <div>
+                <div class="initiative-title">s.t. Podcast</div>
+                <div class="initiative-desc">
+                    Hosting conversations with leading researchers in operations research and AI. Recent guest: Prof. Louis-Martin Rousseau from Polytechnique Montréal.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+    <div class="container fade-in">
+        <div class="section-title">Gallery</div>
+        <div class="section-subtitle">Conferences, team activities, and moments along the way</div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item span-2">
+                <img src="images/David_martell_prize.jpg" alt="David Martell Prize" loading="lazy">
+                <div class="gallery-caption">David Martell Student Paper Award — CORS 2025</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_5934.jpg" alt="Award ceremony" loading="lazy">
+                <div class="gallery-caption">Award ceremony</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/Lunch_with_Supervisors___Internship_Moments.jpg" alt="Lunch with supervisors" loading="lazy">
+                <div class="gallery-caption">Lunch with supervisors & internship moments</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_0107.webp" alt="OR@Africa Day at GERAD" loading="lazy">
+                <div class="gallery-caption">OR@Africa Day — GERAD, January 2025</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_0116.webp" alt="Conference panel" loading="lazy">
+                <div class="gallery-caption">Conference panel discussion</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/82038e5e-4359-4e60-9ca5-6901c7bc5b67.JPG" alt="Curling with the team" loading="lazy">
+                <div class="gallery-caption">Curling at Royal Montreal Curling Club</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/3ff3a0cb-bae3-4d24-a489-e9e8a8a82c45.JPG" alt="Boat team activity" loading="lazy">
+                <div class="gallery-caption">Team boat activity</div>
+            </div>
+            <div class="gallery-item span-2">
+                <img src="images/cf3108e2-4e3b-47fe-a8bc-5c43b76a5304.JPG" alt="Indoor soccer team" loading="lazy">
+                <div class="gallery-caption">Indoor soccer with colleagues</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/2945c23b-3bba-4276-adf8-1e835e76eeaa.JPG" alt="Indoor soccer game" loading="lazy">
+                <div class="gallery-caption">Match night</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/Arche_ti.PNG" alt="Arche TI team hike" loading="lazy">
+                <div class="gallery-caption">Team hike — Arche TI</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/Arche_ti_2.PNG" alt="Arche TI team BBQ" loading="lazy">
+                <div class="gallery-caption">Team BBQ — Arche TI</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_7479.jpg" alt="Winter retreat" loading="lazy">
+                <div class="gallery-caption">Winter retreat</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/thumb-2023-09-07-18-49-09-700.jpg" alt="Football in Morocco" loading="lazy">
+                <div class="gallery-caption">Playing football in Morocco</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/WhatsApp_Image_2019-09-01_at_21_21_56.jpeg" alt="Childhood school trip" loading="lazy">
+                <div class="gallery-caption">Where it all started — School trip in Morocco</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-social">
+        <a href="mailto:abdelhakim.abdellaoui@polymtl.ca" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://scholar.google.com/citations?user=wvmZBsYAAAAJ" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://www.linkedin.com/in/abdelhakim-abdellaoui-261478116/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/abdelabde" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.researchgate.net/profile/Abdelhakim-Abdellaoui" target="_blank" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+    </div>
+    <p>© 2026 Abdelhakim Abdellaoui · Montréal, Canada</p>
+    <p style="margin-top:0.25rem; font-size:0.8rem;">PhD Candidate — <a href="https://www.polymtl.ca/">Polytechnique Montréal</a> · <a href="https://www.gerad.ca/en">GERAD</a></p>
+</footer>
+
+<script>
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id], .hero');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => {
+            const top = s.offsetTop - 100;
+            if (window.scrollY >= top) current = s.getAttribute('id') || 'about';
+        });
+        navLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+        });
+    });
+
+    // Close mobile nav on link click
+    navLinks.forEach(a => a.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('open');
+    }));
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
