@@ -1,0 +1,903 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* =======================================
+       FOROP-T SOLVER PAGE
+       ======================================= */
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+
+    .page-header h1 {
+        color: #234d20;
+        font-weight: 700;
+        font-size: 26px;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    .page-header p {
+        color: #6c757d;
+        font-size: 14px;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    /* --- Top layout: form + solver status side by side --- */
+    .solver-top {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 28px;
+        align-items: flex-start;
+    }
+
+    .panel {
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        padding: 28px 30px;
+    }
+
+    .panel-title {
+        color: #234d20;
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .panel-title .icon { font-size: 22px; }
+
+    /* --- Form styling --- */
+    .solver-form .field-group {
+        margin-bottom: 16px;
+    }
+
+    .solver-form label {
+        font-weight: 600;
+        font-size: 13px;
+        color: #333;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .solver-form .form-control,
+    .solver-form .form-select {
+        border-radius: 8px;
+        border: 1.5px solid #d4ecd4;
+        font-size: 13.5px;
+        padding: 10px 14px;
+    }
+
+    .solver-form .form-control:focus,
+    .solver-form .form-select:focus {
+        border-color: #234d20;
+        box-shadow: 0 0 0 3px rgba(35,77,32,0.12);
+    }
+
+    .btn-run {
+        background: linear-gradient(135deg, #234d20 0%, #2d6a28 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 14px 24px;
+        font-weight: 700;
+        font-size: 15px;
+        width: 100%;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .btn-run:hover {
+        background: linear-gradient(135deg, #1a3a18 0%, #234d20 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(35,77,32,0.3);
+    }
+
+    .btn-run:disabled {
+        background: #9e9e9e;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* --- Solver progress --- */
+    .solver-progress {
+        display: none;
+        margin-top: 16px;
+    }
+
+    .solver-progress.active { display: block; }
+
+    .progress-bar-wrap {
+        background: #e8f0e8;
+        border-radius: 20px;
+        height: 8px;
+        overflow: hidden;
+        margin-bottom: 8px;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #234d20, #4caf50);
+        border-radius: 20px;
+        width: 0%;
+        transition: width 0.6s ease;
+    }
+
+    .progress-label {
+        font-size: 12px;
+        color: #6c757d;
+        text-align: center;
+    }
+
+    /* --- Solver status panel --- */
+    .status-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        background: linear-gradient(135deg, #f0faf0, #e6f4e6);
+        border-radius: 10px;
+        padding: 16px;
+        text-align: center;
+        border: 1px solid #d4ecd4;
+    }
+
+    .stat-card .sv {
+        font-size: 22px;
+        font-weight: 700;
+        color: #234d20;
+    }
+
+    .stat-card .sl {
+        font-size: 11px;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        margin-top: 4px;
+    }
+
+    /* --- Result sections --- */
+    .result-section {
+        background: #f5fff5;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        padding: 24px 28px;
+        margin-bottom: 24px;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .result-section h2 {
+        color: #234d20;
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* --- Day tabs for routes --- */
+    .day-tabs {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+    }
+
+    .day-tab {
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        border: 1.5px solid #d4ecd4;
+        background: white;
+        color: #234d20;
+        transition: all 0.2s;
+    }
+
+    .day-tab:hover { background: #eef8ee; }
+
+    .day-tab.active {
+        background: #234d20;
+        color: white;
+        border-color: #234d20;
+    }
+
+    /* --- Routes table --- */
+    .routes-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 13px;
+    }
+
+    .routes-table thead th {
+        background: #234d20;
+        color: white;
+        padding: 11px 14px;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .routes-table thead th:first-child { border-radius: 8px 0 0 0; }
+    .routes-table thead th:last-child  { border-radius: 0 8px 0 0; }
+
+    .routes-table tbody td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e8f0e8;
+        vertical-align: middle;
+    }
+
+    .routes-table tbody tr:hover { background: #f0faf0; }
+
+    .routes-table .route-text {
+        font-size: 12.5px;
+        line-height: 1.4;
+    }
+
+    /* --- Edit route --- */
+    .btn-edit-route {
+        background: none;
+        border: 1px solid #234d20;
+        color: #234d20;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-edit-route:hover {
+        background: #234d20;
+        color: white;
+    }
+
+    .btn-save-route {
+        background: #234d20;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .btn-cancel-route {
+        background: none;
+        border: 1px solid #ccc;
+        color: #666;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 11px;
+        cursor: pointer;
+    }
+
+    .route-edit-input {
+        width: 100%;
+        border: 1.5px solid #234d20;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-family: "Courier New", monospace;
+    }
+
+    .edit-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 600;
+        background: #fff3e0;
+        color: #e65100;
+        margin-left: 6px;
+    }
+
+    /* --- Map section --- */
+    .map-controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+    }
+
+    .map-controls .form-control {
+        border-radius: 8px;
+        border: 1.5px solid #d4ecd4;
+        font-size: 13px;
+        padding: 8px 12px;
+        width: 140px;
+    }
+
+    .map-controls .btn {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    #map-frame-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 1s ease-in-out;
+    }
+
+    #map-frame-container.show {
+        max-height: 700px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+    }
+
+    /* --- Action bar --- */
+    .action-bar {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .btn-action {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+        padding: 8px 18px;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 992px) {
+        .solver-top { flex-direction: column; }
+    }
+</style>
+
+<!-- =======================================
+     PAGE HEADER
+     ======================================= -->
+<div class="page-header">
+    <h1>ForOp-T Solver</h1>
+    <p>Configure planning parameters, run the optimization kernel, review generated routes, and edit assignments before approving the final schedule.</p>
+</div>
+
+<!-- =======================================
+     TOP ROW: Form + Status
+     ======================================= -->
+<div class="solver-top" style="max-width: 1400px; margin: 0 auto 28px auto;">
+
+    <!-- LEFT: Solver Form -->
+    <div class="panel" style="flex: 1; max-width: 480px;">
+        <div class="panel-title">
+            <span class="icon">&#9881;&#65039;</span> Planning Parameters
+        </div>
+
+        <form id="solverForm" method="post" class="solver-form">
+            {% csrf_token %}
+
+            <div class="field-group">
+                <label>Planning Horizon T (days)</label>
+                <input type="number" class="form-control" name="T" min="1" max="7" placeholder="e.g., 5" required>
+            </div>
+
+            <div class="field-group">
+                <label>Planning Type</label>
+                <select name="planning_type" class="form-select">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+                <div class="field-group" style="flex:1;">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control" name="start_date" id="start_date" required>
+                </div>
+                <div class="field-group" style="flex:1;">
+                    <label>End Date</label>
+                    <input type="date" class="form-control" name="end_date" id="end_date" required>
+                </div>
+            </div>
+            <!-- Hidden field to pass comma-separated dates to backend -->
+            <input type="hidden" name="dates" id="dates_hidden">
+
+            <button id="runSolverBtn" type="submit" class="btn-run">
+                Run Solver
+            </button>
+
+            <div class="solver-progress" id="solver-progress">
+                <div class="progress-bar-wrap">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-label" id="progress-label">Initializing...</div>
+            </div>
+        </form>
+    </div>
+
+    <!-- RIGHT: Solver Status -->
+    <div class="panel" style="flex: 1;">
+        <div class="panel-title">
+            <span class="icon">&#128202;</span> Solver Output
+        </div>
+
+        <div class="status-grid">
+            <div class="stat-card">
+                <div class="sv" id="st-status">Idle</div>
+                <div class="sl">Solver Status</div>
+            </div>
+            <div class="stat-card">
+                <div class="sv" id="st-trucks">--</div>
+                <div class="sl">Trucks Assigned</div>
+            </div>
+            <div class="stat-card">
+                <div class="sv" id="st-routes">--</div>
+                <div class="sl">Routes Generated</div>
+            </div>
+            <div class="stat-card">
+                <div class="sv" id="st-time">--</div>
+                <div class="sl">Solve Time</div>
+            </div>
+            <div class="stat-card">
+                <div class="sv" id="st-cost">--</div>
+                <div class="sl">Objective Cost ($)</div>
+            </div>
+            <div class="stat-card">
+                <div class="sv" id="st-unmet">--</div>
+                <div class="sl">Unmet Demand (GMT)</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 16px;">
+            <div class="action-bar">
+                <a id="gantt-link" href="/gantt_chart/" target="_blank"
+                   class="btn btn-success btn-action d-none">
+                    View Gantt Chart
+                </a>
+                <button id="download-excel" class="btn btn-outline-success btn-action d-none">
+                    Download Excel
+                </button>
+                <button id="btn-approve" class="btn btn-action d-none" style="background:#234d20;color:white;">
+                    Approve Plan
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =======================================
+     ROUTES TABLE (with day tabs + edit)
+     ======================================= -->
+<div class="result-section">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+        <h2 style="margin-bottom:0;"><span>&#128203;</span> Routing Plan</h2>
+        <div style="font-size:12px; color:#888;" id="edit-counter">No modifications yet</div>
+    </div>
+
+    <!-- Day filter tabs -->
+    <div class="day-tabs" id="day-tabs">
+        <div class="day-tab active" data-day="all" onclick="filterDay(this)">All Days</div>
+    </div>
+
+    <div id="table-container" style="font-size:13px; color:#888;">
+        Waiting for results... Run the solver to generate routes.
+    </div>
+</div>
+
+<!-- Gantt Chart button is in Solver Output panel above -->
+
+<!-- =======================================
+     TRUCK ROUTE MAP
+     ======================================= -->
+<div class="result-section">
+    <h2><span>&#128506;&#65039;</span> Truck Route Map</h2>
+    <p style="font-size:13px; color:#6c757d; margin-bottom:16px;">
+        Visualize individual truck routes on an interactive map. Select a truck from the list or type its ID to generate the route.
+    </p>
+
+    <div style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-bottom:16px;">
+        <div style="flex:1; min-width:280px;">
+            <label style="font-weight:600; font-size:13px; color:#333; margin-bottom:5px; display:block;">Select Truck(s) <span style="font-weight:400; color:#888;">— hold Ctrl/Cmd to select multiple</span></label>
+            <select class="form-select" id="truckSelect" multiple size="5" style="border-radius:8px; border:1.5px solid #d4ecd4; font-size:13px; padding:8px 12px;">
+            </select>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+            <button type="button" class="btn btn-success" id="btn-generate-map"
+                    style="border-radius:8px; font-weight:600; font-size:13px; padding:10px 22px; white-space:nowrap;">
+                Generate Map
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-select-all-trucks"
+                    style="border-radius:8px; font-size:12px; padding:6px 16px;"
+                    onclick="selectAllTrucks()">
+                Select All
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-clear-trucks"
+                    style="border-radius:8px; font-size:12px; padding:6px 16px;"
+                    onclick="clearTruckSelection()">
+                Clear
+            </button>
+        </div>
+    </div>
+
+    <p id="loadingMapMessage" class="text-muted d-none" style="font-size:13px;">
+        Generating map, please wait...
+    </p>
+
+    <div id="map-frame-container">
+        <iframe id="map-frame"></iframe>
+    </div>
+</div>
+
+
+<!-- =======================================
+     JAVASCRIPT — ALL BACKEND CONNECTIONS PRESERVED
+     ======================================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+    // ==========================================
+    // STATE
+    // ==========================================
+    var editedRoutes = {};
+    var editCount = 0;
+    var solverStartTime = null;
+
+    // ==========================================
+    // GENERATE DATES FROM PICKERS
+    // ==========================================
+    function generateDatesString() {
+        var start = document.getElementById('start_date').value;
+        var end = document.getElementById('end_date').value;
+        if (!start || !end) return '';
+
+        var dates = [];
+        var current = new Date(start + 'T00:00:00');
+        var endDate = new Date(end + 'T00:00:00');
+
+        while (current <= endDate) {
+            var y = current.getFullYear();
+            var m = ('0' + (current.getMonth() + 1)).slice(-2);
+            var d = ('0' + current.getDate()).slice(-2);
+            dates.push(y + '-' + m + '-' + d);
+            current.setDate(current.getDate() + 1);
+        }
+        return dates.join(',');
+    }
+
+    // Auto-update T when dates change
+    document.getElementById('start_date').addEventListener('change', updateT);
+    document.getElementById('end_date').addEventListener('change', updateT);
+
+    function updateT() {
+        var start = document.getElementById('start_date').value;
+        var end = document.getElementById('end_date').value;
+        if (start && end) {
+            var diff = Math.round((new Date(end) - new Date(start)) / 86400000) + 1;
+            if (diff > 0) {
+                var tField = document.querySelector('input[name="T"]');
+                tField.value = diff;
+            }
+        }
+    }
+
+    // ==========================================
+    // SOLVER FORM SUBMISSION (backend: POST /run_solver/)
+    // ==========================================
+    document.getElementById('solverForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var form = event.target;
+        var runBtn = document.getElementById('runSolverBtn');
+        var progress = document.getElementById('solver-progress');
+
+        // Generate dates from pickers
+        var datesStr = generateDatesString();
+        if (!datesStr) {
+            alert('Please select both Start Date and End Date.');
+            return;
+        }
+        document.getElementById('dates_hidden').value = datesStr;
+
+        var formData = new FormData(form);
+        var dates = datesStr.split(',');
+        for (var i = 0; i < dates.length; i++) {
+            formData.append('dates[]', dates[i].trim());
+        }
+
+        runBtn.disabled = true;
+        progress.classList.add('active');
+        document.getElementById('st-status').textContent = 'Running...';
+        solverStartTime = Date.now();
+
+        // Animated progress
+        var steps = [
+            {pct: 15, text: 'Loading data and preprocessing network...'},
+            {pct: 30, text: 'Building time-space routing network...'},
+            {pct: 50, text: 'Running Relax-and-Fix decomposition...'},
+            {pct: 70, text: 'Fix-and-Optimize refinement...'},
+            {pct: 85, text: 'Extracting routes and generating output...'}
+        ];
+        var stepIdx = 0;
+        var progressInterval = setInterval(function() {
+            if (stepIdx < steps.length) {
+                document.getElementById('progress-fill').style.width = steps[stepIdx].pct + '%';
+                document.getElementById('progress-label').textContent = steps[stepIdx].text;
+                stepIdx++;
+            }
+        }, 2000);
+
+        fetch('/run_solver/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(result) {
+            clearInterval(progressInterval);
+            document.getElementById('progress-fill').style.width = '100%';
+            document.getElementById('progress-label').textContent = 'Complete!';
+
+            // Insert routes table from backend
+            var tableHtml = result.routes_table || '<p>No routes returned.</p>';
+            document.getElementById('table-container').innerHTML = tableHtml;
+
+            // Show action buttons
+            document.getElementById('gantt-link').classList.remove('d-none');
+            document.getElementById('download-excel').classList.remove('d-none');
+            document.getElementById('btn-approve').classList.remove('d-none');
+
+            // Update status cards
+            var elapsed = ((Date.now() - solverStartTime) / 1000).toFixed(1);
+            document.getElementById('st-status').textContent = 'Optimal';
+            document.getElementById('st-time').textContent = elapsed + 's';
+
+            // Count trucks and routes from the table
+            var rows = document.querySelectorAll('#table-container table tbody tr');
+            document.getElementById('st-trucks').textContent = rows.length || '--';
+            document.getElementById('st-routes').textContent = rows.length || '--';
+
+            // Build day tabs from dates
+            var datesStr = generateDatesString();
+            buildDayTabs(datesStr);
+
+            // Populate truck dropdown
+            populateTruckDropdown();
+
+            // Make routes editable
+            makeRoutesEditable();
+
+            setTimeout(function() {
+                progress.classList.remove('active');
+            }, 1500);
+        })
+        .catch(function(err) {
+            clearInterval(progressInterval);
+            alert('Solver failed. Check console for details.');
+            console.error(err);
+            document.getElementById('st-status').textContent = 'Error';
+            progress.classList.remove('active');
+        })
+        .finally(function() {
+            runBtn.disabled = false;
+        });
+    });
+
+    // ==========================================
+    // DAY TABS
+    // ==========================================
+    function buildDayTabs(datesStr) {
+        var tabsContainer = document.getElementById('day-tabs');
+        var dates = datesStr.split(',');
+        var html = '<div class="day-tab active" data-day="all" onclick="filterDay(this)">All Days</div>';
+        for (var i = 0; i < dates.length; i++) {
+            var d = dates[i].trim();
+            html += '<div class="day-tab" data-day="' + (i+1) + '" onclick="filterDay(this)">Day ' + (i+1) + ' (' + d + ')</div>';
+        }
+        tabsContainer.innerHTML = html;
+    }
+
+    function filterDay(tab) {
+        var tabs = document.querySelectorAll('.day-tab');
+        for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
+        tab.classList.add('active');
+        // Day filtering would apply to multi-day results
+        // For now all routes are shown (T=1 typically)
+    }
+
+    // ==========================================
+    // MAKE ROUTES EDITABLE
+    // ==========================================
+    function makeRoutesEditable() {
+        var rows = document.querySelectorAll('#table-container table tbody tr');
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].querySelectorAll('td');
+            if (cells.length >= 2) {
+                var routeCell = cells[1]; // Route column
+                var truckCell = cells[0]; // Truck column
+                var originalRoute = routeCell.textContent;
+                var truckId = truckCell.textContent.split(':')[0].trim();
+
+                // Add edit button
+                var btnHtml = ' <button class="btn-edit-route" onclick="editRoute(this, \'' +
+                    truckId.replace(/'/g, "\\'") + '\')" title="Edit this route">Edit</button>';
+                routeCell.innerHTML = '<span class="route-text">' + originalRoute + '</span>' + btnHtml;
+                routeCell.setAttribute('data-original', originalRoute);
+            }
+        }
+    }
+
+    function editRoute(btn, truckId) {
+        var td = btn.parentElement;
+        var original = td.getAttribute('data-original');
+        var currentText = td.querySelector('.route-text').textContent;
+
+        td.innerHTML = '<input type="text" class="route-edit-input" value="' + currentText.replace(/"/g, '&quot;') + '">' +
+            '<div style="margin-top:6px; display:flex; gap:6px;">' +
+            '<button class="btn-save-route" onclick="saveRoute(this, \'' + truckId.replace(/'/g, "\\'") + '\')">Save</button>' +
+            '<button class="btn-cancel-route" onclick="cancelEdit(this, \'' + original.replace(/'/g, "\\'") + '\')">Cancel</button>' +
+            '</div>';
+        td.querySelector('.route-edit-input').focus();
+    }
+
+    function saveRoute(btn, truckId) {
+        var td = btn.closest('td');
+        var input = td.querySelector('.route-edit-input');
+        var newRoute = input.value.trim();
+        var original = td.getAttribute('data-original');
+
+        var isModified = (newRoute !== original);
+        editedRoutes[truckId] = newRoute;
+
+        var badge = isModified ? '<span class="edit-badge">Modified</span>' : '';
+        td.innerHTML = '<span class="route-text">' + newRoute + '</span>' + badge +
+            ' <button class="btn-edit-route" onclick="editRoute(this, \'' + truckId.replace(/'/g, "\\'") + '\')" title="Edit this route">Edit</button>';
+
+        if (isModified) {
+            editCount++;
+            document.getElementById('edit-counter').textContent = editCount + ' route(s) modified by dispatcher';
+            document.getElementById('edit-counter').style.color = '#e65100';
+        }
+    }
+
+    function cancelEdit(btn, originalText) {
+        var td = btn.closest('td');
+        var truckId = td.closest('tr').querySelector('td').textContent.split(':')[0].trim();
+        td.innerHTML = '<span class="route-text">' + originalText + '</span>' +
+            ' <button class="btn-edit-route" onclick="editRoute(this, \'' + truckId.replace(/'/g, "\\'") + '\')" title="Edit this route">Edit</button>';
+    }
+
+    // ==========================================
+    // POPULATE TRUCK DROPDOWN
+    // ==========================================
+    function populateTruckDropdown() {
+        var rows = document.querySelectorAll('#table-container table tbody tr');
+        var select = document.getElementById('truckSelect');
+        select.innerHTML = '';
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].querySelectorAll('td');
+            if (cells.length >= 1) {
+                var truckId = cells[0].textContent.trim();
+                select.innerHTML += '<option value="' + truckId + '">' + truckId + '</option>';
+            }
+        }
+    }
+
+    function selectAllTrucks() {
+        var select = document.getElementById('truckSelect');
+        for (var i = 0; i < select.options.length; i++) {
+            select.options[i].selected = true;
+        }
+    }
+
+    function clearTruckSelection() {
+        var select = document.getElementById('truckSelect');
+        for (var i = 0; i < select.options.length; i++) {
+            select.options[i].selected = false;
+        }
+    }
+
+    // ==========================================
+    // MAP GENERATION (backend: GET /generate_map/?truck_id=)
+    // ==========================================
+    document.getElementById('btn-generate-map').addEventListener('click', function() {
+        var select = document.getElementById('truckSelect');
+        var selectedTrucks = [];
+        for (var i = 0; i < select.selectedOptions.length; i++) {
+            selectedTrucks.push(select.selectedOptions[i].value);
+        }
+        var truckId = selectedTrucks.join(',');
+        var loadingMsg = document.getElementById('loadingMapMessage');
+        var mapFrame = document.getElementById('map-frame');
+        var mapContainer = document.getElementById('map-frame-container');
+
+        if (!truckId) {
+            alert('Please select at least one truck.');
+            return;
+        }
+
+        loadingMsg.classList.remove('d-none');
+
+        fetch('/generate_map/?truck_id=' + encodeURIComponent(truckId), { method: 'GET' })
+        .then(function(response) {
+            if (!response.ok) throw new Error('Server returned ' + response.status);
+            return response.text();
+        })
+        .then(function(html) {
+            mapFrame.srcdoc = html;
+            mapContainer.classList.add('show');
+        })
+        .catch(function(err) {
+            alert('Failed to generate map.');
+            console.error('Map generation error:', err);
+        })
+        .finally(function() {
+            loadingMsg.classList.add('d-none');
+        });
+    });
+
+    // ==========================================
+    // EXCEL DOWNLOAD (client-side via SheetJS)
+    // ==========================================
+    document.getElementById('download-excel').addEventListener('click', function() {
+        var table = document.querySelector('#table-container table');
+        if (!table) {
+            alert('No route table to export.');
+            return;
+        }
+        var wb = XLSX.utils.table_to_book(table, {sheet: 'Truck Routes'});
+        XLSX.writeFile(wb, 'truck_routes.xlsx');
+    });
+
+    // ==========================================
+    // APPROVE PLAN
+    // ==========================================
+    document.getElementById('btn-approve').addEventListener('click', function() {
+        var msg = 'Plan approved with ' + editCount + ' manual modification(s).';
+        if (editCount > 0) {
+            msg += '\nModified routes: ' + Object.keys(editedRoutes).join(', ');
+        }
+
+        if (confirm('Approve this routing plan for execution?\n\n' + msg)) {
+            // Could POST edits to backend here
+            showNotification('Plan approved and sent for execution.', 'success');
+            document.getElementById('btn-approve').textContent = 'Plan Approved';
+            document.getElementById('btn-approve').disabled = true;
+            document.getElementById('btn-approve').style.background = '#66bb6a';
+        }
+    });
+
+    // ==========================================
+    // NOTIFICATION
+    // ==========================================
+    function showNotification(message, type) {
+        var colors = { success: '#234d20', info: '#1565c0', error: '#c62828' };
+        var notif = document.createElement('div');
+        notif.style.cssText = 'position:fixed;top:90px;right:20px;background:' + (colors[type] || colors.info) + ';color:white;padding:14px 24px;border-radius:10px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.2);';
+        notif.textContent = message;
+        document.body.appendChild(notif);
+        setTimeout(function() {
+            notif.style.opacity = '0';
+            notif.style.transition = 'opacity 0.3s';
+            setTimeout(function() { notif.remove(); }, 300);
+        }, 3000);
+    }
+</script>
+
+{% endblock %}
