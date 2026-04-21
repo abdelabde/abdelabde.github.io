@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdelhakim Abdellaoui — PhD Candidate, Polytechnique Montréal</title>
+<meta name="description" content="Abdelhakim Abdellaoui — PhD candidate in Industrial Engineering at Polytechnique Montréal and GERAD. Research on vehicle routing optimization, machine learning, and operations research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--ink:#111827;--ink2:#374151;--ink3:#6b7280;--ink4:#9ca3af;--bg:#fafaf9;--bg2:#f5f2ed;--card:#fff;--ac:#92400e;--ac2:#78350f;--acL:#d97706;--acBg:rgba(217,119,6,.08);--acBgS:#fef3c7;--grn:#065f46;--grnBg:#ecfdf5;--blu:#1e40af;--bluBg:#eff6ff;--pur:#6b21a8;--purBg:#faf5ff;--ros:#9f1239;--rosBg:#fff1f2;--bdr:#e5e7eb;--bdrL:#f3f4f6;--shXs:0 1px 2px rgba(0,0,0,.04);--shSm:0 1px 3px rgba(0,0,0,.06);--shMd:0 4px 12px rgba(0,0,0,.07);--r:8px;--rL:12px;--rX:16px;--t:.2s ease}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15.5px;-webkit-font-smoothing:antialiased}
+::selection{background:var(--acBgS);color:var(--ac2)}
+a{color:var(--ac);text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,250,249,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid transparent;transition:all .3s}
+nav.scrolled{border-bottom-color:var(--bdr);box-shadow:var(--shXs)}
+.nI{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:62px}
+.nL{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--ink);text-decoration:none}
+.nL span{color:var(--acL)}
+.nK{display:flex;gap:.15rem;align-items:center}
+.nK a{font-size:.82rem;font-weight:500;color:var(--ink3);text-decoration:none;padding:.35rem .65rem;border-radius:6px;transition:all var(--t);letter-spacing:.01em}
+.nK a:hover{color:var(--ink);background:var(--bdrL)}
+.nK a.on{color:var(--ac);background:var(--acBg)}
+.nT{display:none;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--ink);padding:.5rem}
+
+/* HERO */
+.hero{padding:7.5rem 2rem 3.5rem;max-width:1060px;margin:0 auto}
+.hG{display:grid;grid-template-columns:220px 1fr;gap:2.75rem;align-items:start}
+.hPC{position:relative}
+.hP{width:220px;height:264px;object-fit:cover;object-position:top;border-radius:var(--rX);box-shadow:var(--shMd)}
+.hS{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);background:var(--grn);color:#fff;font-size:.68rem;font-weight:700;padding:.3rem .75rem;border-radius:20px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--shSm)}
+.hC h1{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:600;line-height:1.15;letter-spacing:-.025em}
+.hA{font-size:1rem;color:var(--ink3);margin-top:.4rem}
+.hA a{color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--bdr);transition:all var(--t)}
+.hA a:hover{color:var(--ac);border-bottom-color:var(--ac)}
+.hB{margin-top:1.25rem;font-size:.98rem;color:var(--ink2);line-height:1.75;max-width:600px}
+.hB a{border-bottom:1px solid rgba(146,64,14,.2);transition:border-color var(--t)}
+.hB a:hover{border-bottom-color:var(--ac)}
+.hLs{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem}
+.hLk{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:500;color:var(--ink3);text-decoration:none;padding:.4rem .75rem;border:1px solid var(--bdr);border-radius:6px;transition:all var(--t)}
+.hLk:hover{border-color:var(--ac);color:var(--ac);background:var(--acBg)}
+.hLk i{font-size:.85rem;width:14px;text-align:center}
+
+/* SECTIONS */
+section{padding:3.5rem 2rem}
+.ct{max-width:1060px;margin:0 auto}
+.alt{background:var(--card);border-top:1px solid var(--bdrL);border-bottom:1px solid var(--bdrL)}
+.sH{display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem}
+.sH .b{width:3px;height:24px;background:var(--acL);border-radius:2px}
+.sT{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;letter-spacing:-.02em}
+.sL{color:var(--ink3);font-size:.9rem;margin-bottom:2rem;padding-left:calc(3px + .6rem)}
+
+/* NEWS */
+.nR{display:grid;grid-template-columns:100px 1fr;gap:1.25rem;padding:.9rem 0;border-bottom:1px solid var(--bdrL);align-items:baseline}
+.nR:last-child{border-bottom:none}
+.nD{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--ink4)}
+.nB{font-size:.92rem;color:var(--ink2)}
+.nB strong{color:var(--ink)}
+.nBd{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:.15rem .45rem;border-radius:3px;margin-left:.3rem;vertical-align:middle}
+.nBd.aw{background:var(--acBgS);color:var(--ac)}.nBd.pa{background:var(--bluBg);color:var(--blu)}.nBd.tk{background:var(--purBg);color:var(--pur)}
+
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.25rem}
+.chip{font-size:.8rem;font-weight:500;padding:.35rem .85rem;border-radius:20px;background:var(--card);border:1px solid var(--bdr);color:var(--ink2)}
+
+/* PUB */
+.pgT{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:1rem;margin-top:1.75rem;color:var(--ink)}
+.pgT:first-of-type{margin-top:0}
+.pC{padding:1.15rem 1.35rem;background:var(--card);border:1px solid var(--bdrL);border-radius:var(--r);margin-bottom:.85rem;transition:all var(--t)}
+.pC:hover{border-color:var(--bdr);box-shadow:var(--shXs)}
+.pTg{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:.15rem .5rem;border-radius:3px;margin-bottom:.45rem}
+.pTg.ac{background:var(--grnBg);color:var(--grn)}.pTg.pr{background:var(--bluBg);color:var(--blu)}.pTg.ip{background:var(--purBg);color:var(--pur)}.pTg.cf{background:var(--rosBg);color:var(--ros)}.pTg.th{background:#f5f3ff;color:#5b21b6}
+.pN{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:500;line-height:1.45;margin-bottom:.3rem}
+.pA{font-size:.84rem;color:var(--ink3)}.pA b{color:var(--ink);font-weight:600}
+.pV{font-size:.82rem;color:var(--ink4);font-style:italic;margin-top:.1rem}
+.pLs{margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.pLn{font-size:.73rem;font-weight:600;color:var(--ac);text-decoration:none;padding:.18rem .5rem;border-radius:4px;border:1px solid rgba(146,64,14,.2);transition:all var(--t)}
+.pLn:hover{background:var(--acBg)}
+
+/* TALKS */
+.tlI{display:grid;grid-template-columns:80px 1fr;gap:1rem;font-size:.9rem;padding:.65rem 0;border-bottom:1px solid var(--bdrL);align-items:baseline}
+.tlI:last-child{border-bottom:none}
+.tlY{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--ink4)}
+.tlT{color:var(--ink2)}.tlV{font-size:.82rem;color:var(--ink3);font-style:italic}
+.tlPr{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;background:var(--acBgS);color:var(--ac);padding:.12rem .4rem;border-radius:3px;margin-left:.3rem}
+
+/* EXPERIENCE */
+.eTl{position:relative;padding-left:1.75rem}
+.eTl::before{content:'';position:absolute;left:4px;top:10px;bottom:10px;width:1.5px;background:var(--bdr)}
+.eI{position:relative;margin-bottom:2.25rem}.eI:last-child{margin-bottom:0}
+.eD{position:absolute;left:-1.75rem;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--acL)}
+.eI.now .eD{background:var(--acL)}
+.eP{font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--ink4)}
+.eR{font-weight:600;font-size:.98rem;margin-top:.1rem}
+.eO{font-size:.88rem;color:var(--ink3)}
+.eO a{color:var(--ac);text-decoration:none}.eO a:hover{text-decoration:underline}
+.eDt{margin-top:.4rem;font-size:.88rem;color:var(--ink2);max-width:640px}
+.eDt ul{margin-top:.3rem;padding-left:1.1rem;list-style:none}
+.eDt ul li{position:relative;padding-left:0;margin-bottom:.25rem}
+.eDt ul li::before{content:'–';position:absolute;left:-1rem;color:var(--ink4)}
+.eHl{display:inline-block;font-size:.72rem;font-weight:600;background:var(--grnBg);color:var(--grn);padding:.15rem .5rem;border-radius:3px;margin-top:.3rem}
+
+/* TEACH */
+.tcC{display:grid;grid-template-columns:80px 1fr;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--bdrL);align-items:baseline}
+.tcC:last-child{border-bottom:none}
+.tcTm{font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--ink4)}
+.tcI{font-size:.9rem}.tcR{font-weight:600;color:var(--ink)}.tcCr{color:var(--ink2)}.tcS{font-size:.82rem;color:var(--ink3)}
+
+/* AWARDS */
+.awR{display:grid;grid-template-columns:60px 1fr auto;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--bdrL);align-items:baseline;font-size:.9rem}
+.awR:last-child{border-bottom:none}
+.awY{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--ac);font-weight:600}
+.awN{color:var(--ink2)}.awN strong{color:var(--ink)}
+.awAm{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--grn);font-weight:600;white-space:nowrap}
+
+/* SERVICE */
+.inC{display:grid;grid-template-columns:64px 1fr;gap:1.25rem;padding:1.35rem 1.5rem;background:var(--card);border:1px solid var(--bdrL);border-radius:var(--rL);margin-bottom:1rem;align-items:start;transition:all var(--t)}
+.inC:hover{box-shadow:var(--shSm);border-color:var(--bdr)}
+.inIc{width:64px;height:64px;background:var(--acBg);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.inTi{font-weight:600;font-size:1rem;margin-bottom:.15rem}
+.inRo{font-size:.78rem;color:var(--ac);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem}
+.inDe{font-size:.88rem;color:var(--ink2);line-height:1.65}
+.svB{background:var(--card);border:1px solid var(--bdrL);border-radius:var(--r);padding:1.25rem 1.5rem;margin-bottom:1rem}
+.svBt{font-weight:600;font-size:.95rem;margin-bottom:.5rem;color:var(--ink)}
+.svB p,.svB li{font-size:.88rem;color:var(--ink2)}
+.svB ul{padding-left:1.1rem;list-style:none}
+.svB ul li{position:relative;padding-left:0;margin-bottom:.3rem}
+.svB ul li::before{content:'→';position:absolute;left:-1.1rem;color:var(--acL);font-size:.8rem}
+
+/* GALLERY */
+.gM{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+.gI{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;position:relative;cursor:pointer}
+.gI img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gI:hover img{transform:scale(1.06)}
+.gLb{position:absolute;bottom:0;left:0;right:0;padding:1.75rem .65rem .5rem;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff;font-size:.72rem;font-weight:500;opacity:0;transition:opacity .3s}
+.gI:hover .gLb{opacity:1}
+.gI.w2{grid-column:span 2}
+
+/* FOOTER */
+footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid var(--bdrL)}
+.fIc{display:flex;justify-content:center;gap:.75rem;margin-bottom:.85rem}
+.fIc a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--bdr);color:var(--ink3);font-size:.85rem;transition:all var(--t)}
+.fIc a:hover{border-color:var(--ac);color:var(--ac);background:var(--acBg)}
+.fTx{font-size:.8rem;color:var(--ink4)}
+.fTx a{color:var(--ink3);text-decoration:none}.fTx a:hover{color:var(--ac)}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+.hG{grid-template-columns:1fr;justify-items:center;text-align:center;gap:1.5rem}
+.hP{width:170px;height:204px}.hC h1{font-size:2rem}.hB{max-width:100%}.hLs{justify-content:center}
+.nK{display:none}.nK.open{display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:rgba(250,250,249,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:.75rem 1rem}
+.nT{display:block}
+.nR{grid-template-columns:1fr;gap:.15rem}
+.gM{grid-template-columns:repeat(2,1fr)}.gI.w2{grid-column:span 2}
+.awR{grid-template-columns:50px 1fr}.awAm{display:none}
+.tlI,.tcC{grid-template-columns:1fr;gap:.15rem}
+.inC{grid-template-columns:1fr}.inIc{width:44px;height:44px;font-size:1.2rem}
+section{padding:2.5rem 1.25rem}
+}
+
+/* ANIM */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.vs{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="nI">
+<a href="#" class="nL">A<span>.</span> Abdellaoui</a>
+<button class="nT" onclick="document.querySelector('.nK').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
+<div class="nK">
+<a href="#about" class="on">About</a><a href="#news">News</a><a href="#research">Research</a><a href="#talks">Talks</a><a href="#experience">Experience</a><a href="#teaching">Teaching</a><a href="#awards">Awards</a><a href="#service">Service</a><a href="#gallery">Gallery</a>
+</div>
+</div></nav>
+
+<!-- HERO -->
+<section class="hero" id="about"><div class="hG rv">
+<div class="hPC">
+<img src="images/1675101784485.jpg" alt="Abdelhakim Abdellaoui" class="hP">
+<div class="hS">PhD Candidate</div>
+</div>
+<div class="hC">
+<h1>Abdelhakim Abdellaoui</h1>
+<div class="hA">PhD Candidate · <a href="https://www.polymtl.ca/" target="_blank">Polytechnique Montréal</a> · <a href="https://www.gerad.ca/en" target="_blank">GERAD</a></div>
+<p class="hB">I am a PhD candidate in Industrial Engineering at <a href="https://www.polymtl.ca/" target="_blank">Polytechnique Montréal</a> and a member of <a href="https://www.gerad.ca/en" target="_blank">GERAD</a>, supervised by <a href="https://www.gerad.ca/fr/people/issmail-el-hallaoui" target="_blank">Prof. Issmail El Hallaoui</a> and <a href="https://www.uqar.ca/universite/a-propos-de-l-uqar/departements/unites-departementales-des-sciences-de-la-gestion/benabbou-lobna" target="_blank">Prof. Loubna Benabbou</a>.</p>
+<p class="hB" style="margin-top:.65rem">My research focuses on optimizing <strong>large-scale, operationally rich vehicle routing problems</strong> by combining <strong>machine learning</strong> and <strong>operations research</strong>. I develop decomposition-based frameworks, clustering-driven heuristics, and reinforcement learning approaches for real-world logistics — with current applications in <strong>Canadian forestry transportation</strong>, generating an estimated <strong>$8M/year</strong> in savings.</p>
+<p class="hB" style="margin-top:.65rem">I am also a co-founder of <a href="#service">OR@Africa</a> and previously served as an ERP Consultant at <a href="#experience">Arche TI</a>. Before Polytechnique, I earned an Industrial Engineering diploma from <a href="https://www.emi.ac.ma/" target="_blank">Mohammadia School of Engineering (EMI)</a> in Rabat, Morocco.</p>
+<div class="hLs">
+<a href="mailto:abdelhakim.abdellaoui@polymtl.ca" class="hLk"><i class="fas fa-envelope"></i> Email</a>
+<a href="https://scholar.google.com/citations?user=wvmZBsYAAAAJ" target="_blank" class="hLk"><i class="fas fa-graduation-cap"></i> Scholar</a>
+<a href="https://www.researchgate.net/profile/Abdelhakim-Abdellaoui" target="_blank" class="hLk"><i class="fab fa-researchgate"></i> ResearchGate</a>
+<a href="https://www.linkedin.com/in/abdelhakim-abdellaoui-261478116/" target="_blank" class="hLk"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="https://github.com/abdelabde" target="_blank" class="hLk"><i class="fab fa-github"></i> GitHub</a>
+<a href="https://www.gerad.ca/en/people/abdelhakim-abdellaoui" target="_blank" class="hLk"><i class="fas fa-building-columns"></i> GERAD</a>
+</div>
+</div>
+</div></section>
+
+<!-- NEWS -->
+<section class="alt" id="news"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">News</div></div>
+<div class="sL">Recent updates and milestones</div>
+<div class="nR"><div class="nD">Jul 2025</div><div class="nB">Presented at <strong>EURO 2025</strong> in Leeds, UK — Log-truck routing and unforeseen events. Co-organized <strong>OR@Africa Dinner</strong>. <span class="nBd tk">Talk</span></div></div>
+<div class="nR"><div class="nD">Jul 2025</div><div class="nB">Paper accepted: <strong>"A Decomposition-based framework for large-scale log-truck routing"</strong> — IFAC Proceedings. <span class="nBd pa">Accepted</span></div></div>
+<div class="nR"><div class="nD">Jun 2025</div><div class="nB"><strong>Winner</strong> — <strong>David Martell Student Paper Prize in Forestry</strong>, CORS 2025, Edmonton. <a href="https://www.gerad.ca/en/posts/1260">[Announcement]</a> <span class="nBd aw">Award</span></div></div>
+<div class="nR"><div class="nD">May 2025</div><div class="nB">Presented at <strong>JOPT 2025</strong> and <strong>IFAC 2025</strong> (Trondheim, Norway). <span class="nBd tk">Talks</span></div></div>
+<div class="nR"><div class="nD">Jan 2025</div><div class="nB"><strong>Instructor</strong> for IND8375 — Logistics Networks at Polytechnique Montréal (124 students).</div></div>
+<div class="nR"><div class="nD">Jan 2025</div><div class="nB">Co-organized the first <strong>OR@Africa Day</strong> at GERAD — featured on INFORMS and IFORS newsletters.</div></div>
+<div class="nR"><div class="nD">Mar 2024</div><div class="nB">New preprint: <strong>"Towards a connection between the CVRP and constrained centroid-based clustering"</strong> — <a href="https://arxiv.org/abs/2403.14013">arXiv</a> <span class="nBd pa">Preprint</span></div></div>
+<div class="nR"><div class="nD">Sep 2023</div><div class="nB">Co-founded <strong>OR@Africa</strong> at GERAD to promote operations research across the African continent.</div></div>
+</div></section>
+
+<!-- RESEARCH -->
+<section id="research"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Research</div></div>
+<div class="sL">Publications, preprints, and ongoing work</div>
+<div class="chips">
+<span class="chip">Vehicle Routing</span><span class="chip">Combinatorial Optimization</span><span class="chip">Reinforcement Learning</span><span class="chip">Deep Learning</span><span class="chip">Integer Programming</span><span class="chip">Decomposition Methods</span><span class="chip">Clustering</span><span class="chip">Forestry Logistics</span>
+</div>
+
+<div class="pgT">Published & Accepted</div>
+<div class="pC"><span class="pTg ac">Accepted — IFAC 2025</span><div class="pN">A Decomposition-Based Framework for Large-Scale Multi-Period Log-Truck Routing and Scheduling: A Case Study in Canadian Forestry</div><div class="pA"><b>A. Abdellaoui</b>, L. Benabbou, I. El Hallaoui</div><div class="pV">IFAC Proceedings, 2025</div></div>
+<div class="pC"><span class="pTg cf">Conference</span><div class="pN">Predicting Future Ships Arrival, Wharf Availability Periods and the Sojourn Time: A Case Study of Wharf Laayoune</div><div class="pA"><b>A. Abdellaoui</b>, A. Attajer, L. Benabbou</div><div class="pV">Machine Learning and Data Analytics for Africa (ML4A), EMI Rabat, 2018</div><div class="pLs"><a href="https://www.researchgate.net/publication/349214764" target="_blank" class="pLn"><i class="fas fa-link"></i> ResearchGate</a></div></div>
+
+<div class="pgT">Preprints & Submitted</div>
+<div class="pC"><span class="pTg pr">Completed — To submit</span><div class="pN">Efficient Decomposition Methods for Large-Scale, Multi-Period Log-Truck Routing and Scheduling: Application to Canadian Forest</div><div class="pA"><b>A. Abdellaoui</b>, L. Benabbou, I. El Hallaoui</div><div class="pV">Target: partner journal (post IFAC presentation)</div></div>
+<div class="pC"><span class="pTg pr">Completed — To submit</span><div class="pN">Towards a Connection Between the Capacitated Vehicle Routing Problem and the Constrained Centroid-Based Clustering</div><div class="pA"><b>A. Abdellaoui</b>, L. Benabbou, I. El Hallaoui</div><div class="pV">Target: Transportation Science</div><div class="pLs"><a href="https://arxiv.org/abs/2403.14013" target="_blank" class="pLn"><i class="fas fa-file-pdf"></i> arXiv</a><a href="https://www.gerad.ca/en/people/abdelhakim-abdellaoui" target="_blank" class="pLn"><i class="fas fa-link"></i> GERAD</a></div></div>
+
+<div class="pgT">Work in Progress</div>
+<div class="pC"><span class="pTg ip">In progress</span><div class="pN">Real-Time Log-Truck Routing Rescheduling in Response to Unforeseen Events: Case of Canadian Forestry</div><div class="pA"><b>A. Abdellaoui</b>, L. Benabbou, I. El Hallaoui</div></div>
+<div class="pC"><span class="pTg ip">In progress</span><div class="pN">Reinforcement Learning–Based Clustering for the Capacitated Vehicle Routing Problem</div><div class="pA"><b>A. Abdellaoui</b>, L. Benabbou, I. El Hallaoui</div></div>
+<div class="pC"><span class="pTg ip">In progress</span><div class="pN">Decision Support System for Forestry Optimization Solvers</div><div class="pA"><b>A. Abdellaoui</b>, L. Benabbou, I. El Hallaoui</div></div>
+
+<div class="pgT">Thesis</div>
+<div class="pC"><span class="pTg th">Master's Thesis</span><div class="pN">Digitalisation du processus de la planification de chargement des navires au niveau du port Wharf Laâyoune</div><div class="pA"><b>A. Abdellaoui</b>, A. Attajer, L. Benabbou</div><div class="pV">Mohammadia School of Engineering (EMI), 2018</div><div class="pLs"><a href="https://www.researchgate.net/publication/349216689" target="_blank" class="pLn"><i class="fas fa-link"></i> ResearchGate</a></div></div>
+</div></section>
+
+<!-- TALKS -->
+<section class="alt" id="talks"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Talks & Presentations</div></div>
+<div class="sL">Selected conference presentations</div>
+<div class="tlI"><div class="tlY">2025</div><div><div class="tlT">A Decomposition-based framework for large-scale multi-period log-truck routing</div><div class="tlV">IFAC Conference, Trondheim, Norway</div></div></div>
+<div class="tlI"><div class="tlY">2025</div><div><div class="tlT">Log-truck routing and unforeseen events management: A Case Study in Canadian Forestry</div><div class="tlV">EURO Conference, Leeds, UK</div></div></div>
+<div class="tlI"><div class="tlY">2025</div><div><div class="tlT">Log-truck routing and unforeseen events management</div><div class="tlV">CORS Conference, Edmonton, Canada <span class="tlPr">David Martell Prize</span></div></div></div>
+<div class="tlI"><div class="tlY">2025</div><div><div class="tlT">Log-truck routing and unforeseen events management</div><div class="tlV">JOPT Conference, Montréal</div></div></div>
+<div class="tlI"><div class="tlY">2024</div><div><div class="tlT">Towards a connection between CVRP and constrained centroid-based clustering</div><div class="tlV">CORS Conference, London, Canada</div></div></div>
+<div class="tlI"><div class="tlY">2024</div><div><div class="tlT">Log-truck routing and scheduling for Canadian Forestry</div><div class="tlV">CORS Conference, London, Canada</div></div></div>
+<div class="tlI"><div class="tlY">2024</div><div><div class="tlT">CVRP and constrained centroid-based clustering / Log-truck routing</div><div class="tlV">JOPT Conference, Montréal (×2 talks)</div></div></div>
+<div class="tlI"><div class="tlY">2023</div><div><div class="tlT">Mastering supply chain complexity using emerging technologies</div><div class="tlV">Abu Dhabi University, UAE (invited)</div></div></div>
+<div class="tlI"><div class="tlY">2023</div><div><div class="tlT">Cluster-First, Route-Second and Relink-Third</div><div class="tlV">CORS/JOPT Conference, Montréal</div></div></div>
+<div class="tlI"><div class="tlY">2018</div><div><div class="tlT">Prédiction des arrivées de navires: cas du quai de Laâyoune</div><div class="tlV">ML4A Conference, EMI Rabat, Morocco</div></div></div>
+</div></section>
+
+<!-- EXPERIENCE -->
+<section id="experience"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Experience</div></div>
+<div class="sL">Research, industry, and consulting positions</div>
+<div class="eTl">
+
+<div class="eI now"><div class="eD"></div><div class="eP">Nov 2023 — Present</div><div class="eR">Scientific Research Assistant</div><div class="eO"><a href="#">CanmetEnergy, Natural Resources Canada</a> · Varennes, Canada</div><div class="eDt"><ul><li>Deployed a decision-support tool for forestry transportation planning</li><li>Designed an optimization solver for forest vehicle routing with capacity, time windows, and resource constraints</li><li>Developed a dynamic rescheduling heuristic for real-time operational disruptions</li></ul><div class="eHl">Estimated impact: $8M/year savings</div></div></div>
+
+<div class="eI"><div class="eD"></div><div class="eP">Nov 2021 — Jan 2025</div><div class="eR">ERP Functional & Technical Consultant</div><div class="eO"><a href="#">Arche TI</a> · Montréal, Canada</div><div class="eDt"><ul><li>Supported 50+ SMEs in Quebec with Odoo ERP integration (CRM, sales, procurement, accounting)</li><li>Designed IT architectures and interfaced Odoo with messaging, shipping (FedEx, GLS), and BI systems</li><li>Trained staff and authored technical/functional documentation</li></ul></div></div>
+
+<div class="eI"><div class="eD"></div><div class="eP">Apr 2021 — Jan 2022</div><div class="eR">Scientific Research Intern</div><div class="eO"><a href="#">ClearDestination</a> · Montréal, Canada</div><div class="eDt"><ul><li>Designed a data-partitioning model for last-mile delivery planning in appliance retail</li></ul></div></div>
+
+<div class="eI"><div class="eD"></div><div class="eP">Apr 2019 — Jan 2021</div><div class="eR">IT Project Manager</div><div class="eO"><a href="#">Akwa Group</a> · Casablanca, Morocco</div><div class="eDt"><ul><li>Integrated Salesforce for client prospecting, sales, and financial recovery</li><li>Implemented maintenance workflows in Odoo and purchase validation in Microsoft Dynamics</li><li>Built a decision-support tool for fuel station vehicle routing</li></ul></div></div>
+
+<div class="eI"><div class="eD"></div><div class="eP">Jan — Mar 2019</div><div class="eR">Demand & Supply Planner</div><div class="eO"><a href="#">L'Oréal Morocco</a> · Casablanca</div><div class="eDt"><ul><li>Forecasted monthly sales across 800+ products and built supply plans</li></ul></div></div>
+
+<div class="eI"><div class="eD"></div><div class="eP">Feb — Jun 2018</div><div class="eR">Data Science Intern</div><div class="eO"><a href="#">OCP Group</a> · El Jadida, Morocco</div><div class="eDt"><ul><li>Predicted ship arrivals, wharf availability, and vessel sojourn times</li><li>Optimized ship loading schedules using mathematical programming</li></ul></div></div>
+
+<div class="eI"><div class="eD"></div><div class="eP">Feb — Jun 2017</div><div class="eR">Operations Research Intern</div><div class="eO"><a href="#">Label'Vie</a> · Rabat, Morocco</div><div class="eDt"><ul><li>Implemented a delivery routing heuristic for retail distribution supply</li></ul></div></div>
+
+</div>
+</div></section>
+
+<!-- TEACHING -->
+<section class="alt" id="teaching"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Teaching</div></div>
+<div class="sL">Courses at Polytechnique Montréal</div>
+<div class="tcC"><div class="tcTm">W 2025</div><div class="tcI"><div class="tcR">Instructor</div><div class="tcCr">IND8375 — Logistics Networks</div><div class="tcS">124 students</div></div></div>
+<div class="tcC"><div class="tcTm">W 2025</div><div class="tcI"><div class="tcR">Teaching Assistant</div><div class="tcCr">MTH1102 — Calculus II</div><div class="tcS">45 students</div></div></div>
+<div class="tcC"><div class="tcTm">F 2024</div><div class="tcI"><div class="tcR">Teaching Assistant</div><div class="tcCr">MTH1106 — Advanced Calculus for Engineers</div><div class="tcS">30 students</div></div></div>
+<div class="tcC"><div class="tcTm">W 2024</div><div class="tcI"><div class="tcR">Instructor</div><div class="tcCr">IND8375 — Logistics Networks</div><div class="tcS">104 students</div></div></div>
+<div class="tcC"><div class="tcTm">W 2023</div><div class="tcI"><div class="tcR">Teaching Assistant</div><div class="tcCr">IND8375 — Logistics Networks</div><div class="tcS">30 students</div></div></div>
+</div></section>
+
+<!-- AWARDS -->
+<section id="awards"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Awards, Scholarships & Certifications</div></div>
+<div class="sL">Funding, honors, and recognition</div>
+
+<div class="pgT" style="margin-top:0">Scholarships & Prizes</div>
+<div class="awR"><div class="awY">2025</div><div class="awN"><strong>David Martell Student Paper Prize</strong> in Forestry — Winner · CORS</div><div class="awAm"></div></div>
+<div class="awR"><div class="awY">2023–26</div><div class="awN"><strong>PFETE Fellowship</strong> · Natural Resources Canada</div><div class="awAm">$30,000/yr</div></div>
+<div class="awR"><div class="awY">2022–26</div><div class="awN"><strong>FRQNT Excellence Scholarship</strong> · Ranked 5th in Quebec</div><div class="awAm">$25,000/yr</div></div>
+<div class="awR"><div class="awY">2021–22</div><div class="awN"><strong>Mitacs Scholarship</strong></div><div class="awAm">$15,000</div></div>
+<div class="awR"><div class="awY">2020–22</div><div class="awN"><strong>Polytechnique Excellence Scholarship</strong></div><div class="awAm">$21,000/yr</div></div>
+<div class="awR"><div class="awY">2013–18</div><div class="awN"><strong>Maroc Telecom Excellence Scholarship</strong> · Ranked 1st in region</div><div class="awAm">$10,500</div></div>
+<div class="awR"><div class="awY">2014</div><div class="awN"><strong>Academic Excellence Prize</strong> · Ranked 1st · Preparatory school</div><div class="awAm"></div></div>
+<div class="awR"><div class="awY">2012</div><div class="awN"><strong>Academic Excellence Prize</strong> · A.N.E.D · Ranked 1st</div><div class="awAm"></div></div>
+<div class="awR"><div class="awY">2011</div><div class="awN"><strong>Academic Excellence Prize</strong> · Nourarrissala School · Ranked 1st</div><div class="awAm"></div></div>
+
+<div class="pgT">Certifications</div>
+<div class="awR"><div class="awY">2021</div><div class="awN">Reinforcement Learning Virtual School · Toulouse AI Institute</div><div class="awAm"></div></div>
+<div class="awR"><div class="awY">2019</div><div class="awN">Make Money with Machine Learning · Siraj Raval</div><div class="awAm"></div></div>
+<div class="awR"><div class="awY">2015</div><div class="awN">BMH Coach Certificate · Cross-Cultural Leadership Seminar</div><div class="awAm"></div></div>
+</div></section>
+
+<!-- SERVICE -->
+<section class="alt" id="service"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Service & Initiatives</div></div>
+<div class="sL">Supervision, reviewing, community, and leadership</div>
+
+<div class="inC"><div class="inIc">🌍</div><div><div class="inRo">Co-Founder · Sep 2023 – Sep 2024</div><div class="inTi">OR@Africa</div><div class="inDe">Co-founded and led OR@Africa at GERAD — an initiative dedicated to advancing Operational Research in Africa. Organized the first <strong>OR@Africa Day</strong> at GERAD (Jan 2025) and the <strong>OR@Africa Dinner</strong> at EURO 2025 in Leeds. Featured on <a href="#">INFORMS</a> and <a href="#">IFORS</a> newsletters. Co-founded with fellow GERAD students and supported by Prof. Issmail El Hallaoui.</div></div></div>
+
+<div class="inC"><div class="inIc">🎙️</div><div><div class="inRo">Host</div><div class="inTi">s.t. Podcast</div><div class="inDe">Hosting conversations with leading researchers in operations research and AI. Recent guest: Prof. Louis-Martin Rousseau (Polytechnique Montréal).</div></div></div>
+
+<div class="svB"><div class="svBt">Supervision</div><ul><li>Co-supervision with Prof. El Hallaoui — <strong>Intern</strong>: Design of an auction platform for freight transportation brokerage in Quebec.</li><li>Co-supervision with Prof. El Hallaoui — <strong>Master's student</strong>: Using large language models (LLMs) for combinatorial optimization.</li></ul></div>
+
+<div class="svB"><div class="svBt">Peer Review</div><ul><li>Reviewer for <em>Computers and Industrial Engineering</em> — 3 papers reviewed.</li></ul></div>
+
+<div class="svB"><div class="svBt">Community Leadership</div><ul><li><strong>Data Circles</strong> (2021–2022) — Project lead organizing data science interview training sessions.</li><li><strong>Hult Prize Morocco</strong> (2017–2018) — Co-founded Hult Prize at EMI, promoting social entrepreneurship.</li><li><strong>EMI Toastmasters</strong> (2016–2018) — Co-founded the first Toastmasters International club in Morocco. Organized the national public speaking competition.</li><li><strong>TEDx "Talk to Lead"</strong> (2017–2018) — Organizing committee member at EMI.</li><li><strong>Hour of Code</strong> (2015–2016) — Introduced coding to primary school students via EMI Women Engineers Club.</li></ul></div>
+</div></section>
+
+<!-- EDUCATION -->
+<section id="education"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Education</div></div>
+<div class="sL">Academic background</div>
+<div class="eTl">
+<div class="eI now"><div class="eD"></div><div class="eP">Aug 2020 — Present</div><div class="eR">PhD in Industrial Engineering</div><div class="eO"><a href="https://www.polymtl.ca/">Polytechnique Montréal</a> · Montréal, Canada</div><div class="eDt">Optimization of large-scale, operationally rich vehicle routing problems using ML and OR.<br>Supervisors: Prof. Issmail El Hallaoui & Prof. Loubna Benabbou · GPA: 3.93/4.</div></div>
+<div class="eI"><div class="eD"></div><div class="eP">Aug 2015 — Jun 2018</div><div class="eR">Industrial Engineering Diploma (Diplôme d'Ingénieur d'État)</div><div class="eO"><a href="https://www.emi.ac.ma/">Mohammadia School of Engineering (EMI)</a> · Rabat, Morocco</div><div class="eDt">Logistics, Production, Quality, Finance, Information Systems.</div></div>
+<div class="eI"><div class="eD"></div><div class="eP">Aug 2013 — Jun 2015</div><div class="eR">Classes Préparatoires (CPGE)</div><div class="eO">Lycée Omar Ibn Al Khattab · Meknès, Morocco</div><div class="eDt">Real & Complex Analysis, Probability Theory, Topology, Linear Algebra.</div></div>
+</div>
+</div></section>
+
+<!-- GALLERY -->
+<section class="alt" id="gallery"><div class="ct rv">
+<div class="sH"><div class="b"></div><div class="sT">Gallery</div></div>
+<div class="sL">Conferences, awards, team moments, and the journey so far</div>
+<div class="gM">
+<div class="gI w2"><img src="images/David_martell_prize.jpg" alt="David Martell Prize" loading="lazy"><div class="gLb">David Martell Student Paper Prize — CORS 2025</div></div>
+<div class="gI"><img src="images/IMG_5934.jpg" alt="Award" loading="lazy"><div class="gLb">Award ceremony</div></div>
+<div class="gI"><img src="images/Lunch_with_Supervisors___Internship_Moments.jpg" alt="Lunch" loading="lazy"><div class="gLb">Lunch with supervisors</div></div>
+<div class="gI"><img src="images/IMG_0107.webp" alt="OR@Africa" loading="lazy"><div class="gLb">OR@Africa Day — GERAD, Jan 2025</div></div>
+<div class="gI"><img src="images/IMG_0116.webp" alt="Panel" loading="lazy"><div class="gLb">Conference panel discussion</div></div>
+<div class="gI"><img src="images/82038e5e-4359-4e60-9ca5-6901c7bc5b67.JPG" alt="Curling" loading="lazy"><div class="gLb">Curling at Royal Montreal Curling Club</div></div>
+<div class="gI"><img src="images/3ff3a0cb-bae3-4d24-a489-e9e8a8a82c45.JPG" alt="Boat" loading="lazy"><div class="gLb">Team boat adventure</div></div>
+<div class="gI w2"><img src="images/cf3108e2-4e3b-47fe-a8bc-5c43b76a5304.JPG" alt="Soccer" loading="lazy"><div class="gLb">Indoor soccer with colleagues</div></div>
+<div class="gI"><img src="images/2945c23b-3bba-4276-adf8-1e835e76eeaa.JPG" alt="Soccer" loading="lazy"><div class="gLb">Match night</div></div>
+<div class="gI"><img src="images/Arche_ti.PNG" alt="Hike" loading="lazy"><div class="gLb">Team hike — Arche TI</div></div>
+<div class="gI"><img src="images/Arche_ti_2.PNG" alt="BBQ" loading="lazy"><div class="gLb">Team BBQ — Arche TI</div></div>
+<div class="gI"><img src="images/IMG_7479.jpg" alt="Winter" loading="lazy"><div class="gLb">Winter retreat</div></div>
+<div class="gI"><img src="images/thumb-2023-09-07-18-49-09-700.jpg" alt="Football" loading="lazy"><div class="gLb">Football in Morocco</div></div>
+<div class="gI"><img src="images/WhatsApp_Image_2019-09-01_at_21_21_56.jpeg" alt="School" loading="lazy"><div class="gLb">Where it all started — Morocco</div></div>
+</div>
+</div></section>
+
+<!-- FOOTER -->
+<footer>
+<div class="fIc">
+<a href="mailto:abdelhakim.abdellaoui@polymtl.ca" aria-label="Email"><i class="fas fa-envelope"></i></a>
+<a href="https://scholar.google.com/citations?user=wvmZBsYAAAAJ" target="_blank" aria-label="Scholar"><i class="fas fa-graduation-cap"></i></a>
+<a href="https://www.linkedin.com/in/abdelhakim-abdellaoui-261478116/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://github.com/abdelabde" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+<a href="https://www.researchgate.net/profile/Abdelhakim-Abdellaoui" target="_blank" aria-label="RG"><i class="fab fa-researchgate"></i></a>
+<a href="https://www.gerad.ca/en/people/abdelhakim-abdellaoui" target="_blank" aria-label="GERAD"><i class="fas fa-building-columns"></i></a>
+</div>
+<div class="fTx">© 2026 Abdelhakim Abdellaoui · Montréal, Canada<br>PhD Candidate — <a href="https://www.polymtl.ca/">Polytechnique Montréal</a> · <a href="https://www.gerad.ca/en">GERAD</a></div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>20)});
+const ss=document.querySelectorAll('section[id],.hero'),ls=document.querySelectorAll('.nK a');
+window.addEventListener('scroll',()=>{let c='about';ss.forEach(s=>{if(scrollY>=s.offsetTop-100)c=s.getAttribute('id')||'about'});ls.forEach(a=>{a.classList.toggle('on',a.getAttribute('href')==='#'+c)})});
+ls.forEach(a=>a.addEventListener('click',()=>document.querySelector('.nK').classList.remove('open')));
+const ob=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vs')}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>ob.observe(el));
+</script>
+</body>
+</html>
